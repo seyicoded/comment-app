@@ -10,6 +10,10 @@ import { Provider as ReduxProvider } from "react-redux";
 import { reduxStore } from './src/store/redux/store';
 import MainStack from './src/navigations/MainStack';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { STORAGE } from './src/constants/storage/storage';
+
+// AsyncStorage.removeItem(STORAGE.REMEMBER_EMAIL)
 
 function App(): React.JSX.Element {
 

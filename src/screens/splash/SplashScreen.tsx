@@ -13,8 +13,8 @@ export default function SplashScreen() {
     <View style={styles.container}>
         <StatusBar backgroundColor={Color.PRIMARY} />
         <Animatable.Image style={styles.floating} source={require("../../assets/resources/splashC.png")} />    
-        <Animatable.Text style={styles.title} delay={500} animation={"zoomInDown"} duration={2800}>Seyi-TFX</Animatable.Text>
-        <Animatable.Text style={styles.text} animation={"fadeIn"} delay={3000} duration={2800}>Global transaction solution</Animatable.Text>
+        <Animatable.Text style={styles.title} delay={500} animation={"zoomInDown"} duration={2800}>Seyi Comment App</Animatable.Text>
+        <Animatable.Text style={styles.text} animation={"fadeIn"} delay={3000} duration={2800}>for Logarithm LLC</Animatable.Text>
     </View>
   )
 }
@@ -30,7 +30,8 @@ const styles = StyleSheet.create({
         fontSize: 48,
         textTransform: 'uppercase',
         zIndex: 99,
-        fontWeight: '600'
+        fontWeight: '600',
+        textAlign: 'center'
     },
     floating: {
         opacity: 0.2,

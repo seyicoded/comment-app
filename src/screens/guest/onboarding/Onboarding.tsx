@@ -46,7 +46,7 @@ const Onboarding = ({navigation}: Props) => {
     }
   return (
     <View style={styles.container}>
-        <StatusBar backgroundColor={Color.PRIMARY} />
+        <StatusBar barStyle={'light-content'} backgroundColor={Color.PRIMARY} />
         <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
             <Button onPress={()=> skip()} theme={{ colors: {primary: Color.PRIMARY_LIGHT} }} mode='contained'>Skip</Button>
         </View>
@@ -65,9 +65,9 @@ const Onboarding = ({navigation}: Props) => {
                 scrollEnabled={false}
                 style={{ width }}
                 data={[
-                    require("../../../assets/onboarding/i1.png"),
-                    require("../../../assets/onboarding/i2.png"),
-                    require("../../../assets/onboarding/i3.png"),
+                    require("../../../assets/onboarding/i4.png"),
+                    require("../../../assets/onboarding/i5.png"),
+                    require("../../../assets/onboarding/i6.png"),
                 ]}
                 renderItem={({index, item})=> <Image key={index} source={item} style={styles.floater} /> }
             />
@@ -77,24 +77,24 @@ const Onboarding = ({navigation}: Props) => {
                     {
                         currentPage == 0 && 
                         <View style={{ height: '80%' }}>
-                            <Text style={{ textAlign: 'center', fontWeight: '700' }} variant='titleLarge'>You ought to know where your money goes</Text>
-                            <Text style={{ textAlign: 'center', marginVertical: 10 }} variant='bodyMedium'>Get an overview of how you are performing and motivate yourself to achieve even more.</Text>
+                            <Text style={{ textAlign: 'center', fontWeight: '700' }} variant='titleLarge'>Interactive Platform Borderless</Text>
+                            <Text style={{ textAlign: 'center', marginVertical: 10 }} variant='bodyMedium'>With the ability to create an account, create post, comment on post and like post.</Text>
                         </View>
                     }
 
                     {
                         currentPage == 1 && 
                         <View style={{ height: '80%' }}>
-                            <Text style={{ textAlign: 'center', fontWeight: '700' }} variant='titleLarge'>Gain total control of your money</Text>
-                            <Text style={{ textAlign: 'center', marginVertical: 10 }} variant='bodyMedium'>Track your transaction easily, with categories and financial report</Text>
+                            <Text style={{ textAlign: 'center', fontWeight: '700' }} variant='titleLarge'>Need to drop your opinion on any Post</Text>
+                            <Text style={{ textAlign: 'center', marginVertical: 10 }} variant='bodyMedium'>You can easily comment on any post with the interactive design made ease for interaction</Text>
                         </View>
                     }
 
                     {
                         currentPage == 2 && 
                         <View style={{ height: '80%' }}>
-                            <Text style={{ textAlign: 'center', fontWeight: '700' }} variant='titleLarge'>Plan ahead and manage your money better</Text>
-                            <Text style={{ textAlign: 'center', marginVertical: 10 }} variant='bodyMedium'>Setup your budget for each category so you in control. Track categories you spend the most money on</Text>
+                            <Text style={{ textAlign: 'center', fontWeight: '700' }} variant='titleLarge'>Need to add your feeling to a post</Text>
+                            <Text style={{ textAlign: 'center', marginVertical: 10 }} variant='bodyMedium'>You can easily add your feeling by simply liking any post</Text>
                         </View>
                     }
 

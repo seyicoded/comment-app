@@ -15,8 +15,10 @@ type Props = {
 const Setting = ({navigation}: Props) => {
   return (
     <View style={styles.container}>
-        <StatusBar backgroundColor={Color.PRIMARY} />
+        {/* <StatusBar backgroundColor={Color.PRIMARY} /> */}
+        <StatusBar barStyle={'dark-content'} backgroundColor={'white'} />
         <View  style={{ flex: 2 }}>
+            <Text variant='headlineLarge'>Settings {'\r'}</Text>
             <List.Item
                 title="Profile"
                 onPress={()=>{

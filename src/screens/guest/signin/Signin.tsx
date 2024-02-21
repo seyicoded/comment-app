@@ -11,6 +11,8 @@ import { object, string, number, date, InferType } from 'yup';
 import ROUTE from '../../../constants/route/route';
 import { NavigationProp } from '@react-navigation/native';
 import { setSignedInUserFromStorage } from '../../../store/local/storage';
+import { updateUserLoggedInState } from '../../../store/redux/action/action';
+import { useDispatch } from 'react-redux';
 
 type Props = {
     navigation: NavigationProp<any>
@@ -23,8 +25,11 @@ const Signin = ({navigation}: Props) => {
         password: ""
     });
 
-    const proceedToUser = ()=>{
-        setSignedInUserFromStorage({});
+    const dispatch = useDispatch();
+
+    const proceedToUser = (userData: object)=>{
+        setSignedInUserFromStorage(userData);
+        updateUserLoggedInState(userData, dispatch)
         navigation.reset({
             index: 0,
             routes: [{name: ROUTE.MAIN_HOME}]
@@ -38,7 +43,7 @@ const Signin = ({navigation}: Props) => {
             const userInfo = await GoogleSignin.signIn();
             console.log({ userInfo });
 
-            proceedToUser()
+            proceedToUser(userInfo.user)
         } catch (error: any) {
             if (error.code === statusCodes.SIGN_IN_CANCELLED) {
                 // user cancelled the login flow
@@ -86,7 +91,14 @@ const Signin = ({navigation}: Props) => {
         const encryptedData = await encryptData(userAuthText, key);
         const isAuthenticated = await validateAccount(encryptedData)
         if(isAuthenticated){
-            proceedToUser()
+            proceedToUser({
+                "email": "opadonuseyi01@gmail.com",
+                "familyName": "seyi",
+                "givenName": "opadonu",
+                "id": "10665061888835176123123",
+                "name": "Opadonu Seyi",
+                "photo": "https://lh3.googleusercontent.com/a/ACg8ocIrj3X463dCQutg1nbAAIDSGzGJUMWlJhVXXuxJZOuizNs=s96-c"
+            })
         }else{
             Toast.show({
                 type: "error",
@@ -98,12 +110,12 @@ const Signin = ({navigation}: Props) => {
     
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={{ color: Color.TEXT_P1, fontWeight: '600' }} variant='headlineMedium'>Welcome To Seyi-TFX</Text>
+      <Text style={{ color: Color.TEXT_P1, fontWeight: '600' }} variant='headlineMedium'>Welcome To Seyi Comment App</Text>
       <Text style={{ marginVertical: 16 }} variant='labelLarge'>Complete the sign in by providing your information</Text>
 
       <TextInput value={input.email} onChangeText={val => setInput({...input, email: val})} style={{ backgroundColor: 'white' }} theme={{ colors: {primary: Color.PRIMARY_LIGHT} }} mode='outlined' placeholder='Name' label={"Email"} />
       <Text>{'\n'}</Text>
-      <TextInput value={input.password} onChangeText={val => setInput({...input, password: val})} style={{ backgroundColor: 'white' }} theme={{ colors: {primary: Color.PRIMARY_LIGHT} }} mode='outlined' placeholder='Name' label={"Password"} />
+      <TextInput secureTextEntry value={input.password} onChangeText={val => setInput({...input, password: val})} style={{ backgroundColor: 'white' }} theme={{ colors: {primary: Color.PRIMARY_LIGHT} }} mode='outlined' placeholder='Name' label={"Password"} />
       <Text>{'\n'}</Text>
       <Button onPress={() => normalLogin()} mode='contained' theme={{ colors: {primary: Color.PRIMARY_LIGHT} }}>Login</Button>
       

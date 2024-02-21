@@ -10,10 +10,11 @@ import { ActivityIndicator } from 'react-native-paper';
 import { Color } from '../constants/color/color';
 import Toast from 'react-native-toast-message'
 import Onboarding from '../screens/guest/onboarding/Onboarding';
-import { getSeenOnBoarind, getSignedInUserFromStorage } from '../store/local/storage';
+import { getPostASyncStorage, getSeenOnBoarind, getSignedInUserFromStorage } from '../store/local/storage';
 import { BottomStack } from './BottomStack';
-import TransactionHistory from '../screens/auth/Others/TransactionHistory';
-import FundTransfer from '../screens/auth/Others/FundTransfer';
+import { updateUserLoggedInState } from '../store/redux/action/action';
+import ACTION_TYPE from '../store/redux/action/type';
+import Comments from '../screens/auth/Others/Comments';
 
 const screen = Dimensions.get("screen")
 
@@ -39,7 +40,16 @@ export default function MainStack() {
         const _user = await getSignedInUserFromStorage();
 
         if(_user.status){
+          updateUserLoggedInState(_user.user, dispatch)
           setDefaultRoute(route.MAIN_HOME);
+
+          // other checker
+          const __post = await getPostASyncStorage();
+          dispatch({
+            type: ACTION_TYPE.APP_POST_COLLECTION,
+            payload: __post
+        })
+
         }else{
           setDefaultRoute(route.SIGNIN);
         }
@@ -88,8 +98,8 @@ export default function MainStack() {
 
           {/* authenticated only */}
           <Stack.Screen name={route.MAIN_HOME} component={BottomStack} />
-          <Stack.Screen name={route.TRANSACTION_HISTORY} component={TransactionHistory} />
-          <Stack.Screen name={route.FUND_TRANSFER} component={FundTransfer} />
+          {/* @ts-ignore */}
+          <Stack.Screen name={route.COMMENT} component={Comments} />
         </Stack.Navigator>
       </NavigationContainer>
       <Toast visibilityTime={4000} />

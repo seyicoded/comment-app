@@ -10,11 +10,11 @@ export const route = {
     // bottom 
     MAIN_HOME: "MAIN_HOME",
     HOME: "HOME",
+    ADD_POST: "ADD_POST",
     SETTING: "SETTING",
     
     // others
-    TRANSACTION_HISTORY: "TRANSACTION_HISTORY",
-    FUND_TRANSFER: "FUND_TRANSFER",
+    COMMENT: "COMMENT",
 }
 
 const ROUTE = route;

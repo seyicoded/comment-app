@@ -42,6 +42,20 @@ export const getToken = async (data?: any)=>{
     return undefined;
 }
 
+export const setPostASyncStorage = async (data: any)=>{
+    await AsyncStorage.setItem(STORAGE.POSTS, JSON.stringify(data))
+}
+
+export const getPostASyncStorage = async (data?: any)=>{
+    let post = await AsyncStorage.getItem(STORAGE.POSTS);
+    if(post != undefined){
+
+        return JSON.parse(post);
+    }
+
+    return [];
+}
+
 export const setAppleDetail = async (data: any)=>{
     await AsyncStorage.setItem(STORAGE.APPLE, JSON.stringify(data))
 }
